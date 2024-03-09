@@ -1,0 +1,12 @@
+{
+  "name": "mixed_vinyl",
+  "version": "1.0.0",
+  "description": "Hi there! Inside this code download you'll find the following things:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
