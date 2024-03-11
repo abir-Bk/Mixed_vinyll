@@ -5,38 +5,36 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 use function Symfony\Component\String\u;
 
-class vinylController extends AbstractController
+class VinylController  extends AbstractController
 {
-    #[Route('/', name: 'app_homepage')]
-    public function homepage(Environment $twig): Response
+    #[Route("/", name: 'app_homepage')]
+    public function homepage(): Response
     {
         $tracks = [
-            ['song' => 'Gangsta\'s Paradise', 'artist' => 'Coolio'],
-            ['song' => 'Waterfalls', 'artist' => 'TLC'],
-            ['song' => 'Creep', 'artist' => 'Radiohead'],
-            ['song' => 'Kiss from a Rose', 'artist' => 'Seal'],
-            ['song' => 'On Bended Knee', 'artist' => 'Boyz II Men'],
-            ['song' => 'Fantasy', 'artist' => 'Mariah Carey'],
+            ['song' => 'this is the life', 'artist' => 'Amy Macdonald'],
+            ['song' => 'A sky full of stars', 'artist' => 'Coldplay'],
+            ['song' => 'Pepas', 'artist' => 'Pepas'],
+            ['song' => 'I Cant Get You Out Of My Head', 'artist' => 'Glimmer of Blooms'],
+            ['song' => 'In Da Getto', 'artist' => 'J. Balvin, Skrillex '],
+            ['song' => 'Bella Ciao', 'artist' => 'La Casa De Papel'],
+            ['song' => 'Talk Dirty  Worth It ', 'artist' => 'Adrian John Mashup '],
         ];
 
-        $html = $twig->render('vinyl/homepage.html.twig', [
+        return $this->render('vinyl/homepage.html.twig', [
             'title' => 'PB & Jams',
             'tracks' => $tracks,
         ]);
-
-        return new Response($html);
     }
-
     #[Route('/browse/{slug}', name: 'app_browse')]
-    public function browse(string $slug = null): Response
+
+    public function browse($slug = null): Response
     {
-        $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
+        $genre  = $slug ? 'Genre: ' . u(str_replace('-', ' ', $slug))->title(true) : null;
 
         return $this->render('vinyl/browse.html.twig', [
-            'genre' => $genre
+            'genre' => $genre,
         ]);
     }
 }
